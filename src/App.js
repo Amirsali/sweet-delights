@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import { GlobalStyle } from "./GlobalStyles";
+import Hero from "./components/Hero";
+import Products from "./components/Products";
+import { productData, productDataMeal } from "./components/Products/data";
+import Featured from "./components/Featured";
+import Footer from "./components/Footer";
+import Typical from "react-typical";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <GlobalStyle />
+      <Hero />
+      <Products
+        heading={
+          <Typical
+            steps={["Pick your sweets", 900, "Message us now 🥰", 1000]}
+            loop={Infinity}
+            wrapper="p"
+          />
+        }
+        data={productData}
+      />
+      <Featured />
+      {/* <Products heading="Snack Treats" data={productDataMeal} /> */}
+      <Products
+        heading={
+          <Typical
+            steps={["Snack Treats", 1000, "For you 😍", 1000]}
+            loop={Infinity}
+            wrapper="p"
+          />
+        }
+        data={productDataMeal}
+      />
+
+      <Footer />
+    </Router>
   );
 }
 
